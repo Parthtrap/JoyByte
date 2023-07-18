@@ -9,6 +9,7 @@ const Homepage = () => {
 	useEffect(() => {
 		GETUtil("http://localhost:8000").then((data) => {
 			if (data.status === 404) navigate("/backendabsent");
+			else setIsLoading(false);
 		});
 	}, []);
 
