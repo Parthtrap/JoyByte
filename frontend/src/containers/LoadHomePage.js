@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GETUtil } from "../apis/utils";
+import HomePage from "./HomePage";
 
-const Homepage = () => {
+const LoadingHomepage = () => {
 	const navigate = useNavigate();
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -15,10 +16,20 @@ const Homepage = () => {
 
 	return (
 		<>
-			<div hidden={!isLoading}>Loading...</div>
-			<div hidden={isLoading}>HomePage</div>;
+			<div
+				className={
+					"flex font-black text-4xl flex-wrap bg-purple-700 min-h-screen justify-center items-center " +
+					(!isLoading ? "hidden" : "")
+				}
+			>
+				Loading . . .
+			</div>
+			<div hidden={isLoading}>
+				<HomePage />
+			</div>
+			;
 		</>
 	);
 };
 
-export default Homepage;
+export default LoadingHomepage;
