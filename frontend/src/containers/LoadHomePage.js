@@ -27,7 +27,6 @@ const LoadingHomepage = () => {
 			<div hidden={isLoading}>
 				<HomePage />
 			</div>
-			;
 		</>
 	);
 };
