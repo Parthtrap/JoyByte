@@ -3,3 +3,6 @@
 
 # react
 **/node_modules
+
+# Test Cases
+**/cypress/videos

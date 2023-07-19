@@ -18,7 +18,7 @@ const LoadingHomepage = () => {
 		<>
 			<div
 				className={
-					"flex font-black text-4xl flex-wrap bg-purple-700 min-h-screen justify-center items-center " +
+					"flex font-black text-4xl flex-wrap bg-violet-400 min-h-screen justify-center items-center " +
 					(!isLoading ? "hidden" : "")
 				}
 			>

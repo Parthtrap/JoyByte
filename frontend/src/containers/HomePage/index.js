@@ -17,7 +17,7 @@ const GameCard = (props) => {
 
 const HomePage = () => {
 	return (
-		<div className="bg-purple-700 h-screen pt-10 p-5">
+		<div className="bg-violet-400 h-screen pt-10 p-5">
 			<div className="text-center font-black text-5xl mb-10">
 				JOY BYTE
 			</div>

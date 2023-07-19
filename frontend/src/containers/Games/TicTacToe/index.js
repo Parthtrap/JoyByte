@@ -89,10 +89,14 @@ const TicTacToe = () => {
 				}
 			>
 				<div>
-					<div className="text-center font-black mb-2">
+					<div
+						id="tic-tac-toe-winner-panel"
+						className="text-center font-black mb-2"
+					>
 						The Winner is {player}
 					</div>
 					<button
+						id="tic-tac-toe-retry-button"
 						onClick={resetBoard}
 						className="border border-black hover:bg-black/75 hover:text-white hover:scale-125 rounded-full h-fit p-2 px-4"
 					>
@@ -106,14 +110,18 @@ const TicTacToe = () => {
 	return (
 		<>
 			<GameOverScreen hidden={!gameEnded} />
-			<div className="bg-purple-700 h-screen pt-10 p-5">
-				<div className="text-center font-black text-5xl mb-[10vh]">
+			<div className="bg-violet-400 h-screen pt-10 p-5">
+				<div
+					id="tic-tac-toe-title"
+					className="text-center font-black text-5xl mb-[10vh]"
+				>
 					TIC TAC TOE
 				</div>
 				<div className="flex justify-center">
 					<div className="grid grid-cols-3 w-fit">
 						<button
-							className="border border-black font-black text-[3vw] h-[10vw] w-[10vw]"
+							id="top-left-tic-tac-toe-button"
+							className="bg-blue-500 text-white text-[3vw] font-black border-b-4 border-blue-700 rounded h-[10vw] w-[10vw] m-2"
 							onClick={() => {
 								CellClick(0, 0);
 							}}
@@ -121,7 +129,8 @@ const TicTacToe = () => {
 							{board[0][0]}
 						</button>
 						<button
-							className="border border-black font-black text-[3vw] h-[10vw] w-[10vw]"
+							id="top-center-tic-tac-toe-button"
+							className="bg-blue-500 text-white text-[3vw] font-black border-b-4 border-blue-700 rounded h-[10vw] w-[10vw] m-2"
 							onClick={() => {
 								CellClick(0, 1);
 							}}
@@ -129,7 +138,8 @@ const TicTacToe = () => {
 							{board[0][1]}
 						</button>
 						<button
-							className="border border-black font-black text-[3vw] h-[10vw] w-[10vw]"
+							id="top-right-tic-tac-toe-button"
+							className="bg-blue-500 text-white text-[3vw] font-black border-b-4 border-blue-700 rounded h-[10vw] w-[10vw] m-2"
 							onClick={() => {
 								CellClick(0, 2);
 							}}
@@ -137,7 +147,8 @@ const TicTacToe = () => {
 							{board[0][2]}
 						</button>
 						<button
-							className="border border-black font-black text-[3vw] h-[10vw] w-[10vw]"
+							id="middle-left-tic-tac-toe-button"
+							className="bg-blue-500 text-white text-[3vw] font-black border-b-4 border-blue-700 rounded h-[10vw] w-[10vw] m-2"
 							onClick={() => {
 								CellClick(1, 0);
 							}}
@@ -145,7 +156,8 @@ const TicTacToe = () => {
 							{board[1][0]}
 						</button>
 						<button
-							className="border border-black font-black text-[3vw] h-[10vw] w-[10vw]"
+							id="middle-center-tic-tac-toe-button"
+							className="bg-blue-500 text-white text-[3vw] font-black border-b-4 border-blue-700 rounded h-[10vw] w-[10vw] m-2"
 							onClick={() => {
 								CellClick(1, 1);
 							}}
@@ -153,7 +165,8 @@ const TicTacToe = () => {
 							{board[1][1]}
 						</button>
 						<button
-							className="border border-black font-black text-[3vw] h-[10vw] w-[10vw]"
+							id="middle-right-tic-tac-toe-button"
+							className="bg-blue-500 text-white text-[3vw] font-black border-b-4 border-blue-700 rounded h-[10vw] w-[10vw] m-2"
 							onClick={() => {
 								CellClick(1, 2);
 							}}
@@ -161,7 +174,8 @@ const TicTacToe = () => {
 							{board[1][2]}
 						</button>
 						<button
-							className="border border-black font-black text-[3vw] h-[10vw] w-[10vw]"
+							id="bottom-left-tic-tac-toe-button"
+							className="bg-blue-500 text-white text-[3vw] font-black border-b-4 border-blue-700 rounded h-[10vw] w-[10vw] m-2"
 							onClick={() => {
 								CellClick(2, 0);
 							}}
@@ -169,7 +183,8 @@ const TicTacToe = () => {
 							{board[2][0]}
 						</button>
 						<button
-							className="border border-black font-black text-[3vw] h-[10vw] w-[10vw]"
+							id="bottom-center-tic-tac-toe-button"
+							className="bg-blue-500 text-white text-[3vw] font-black border-b-4 border-blue-700 rounded h-[10vw] w-[10vw] m-2"
 							onClick={() => {
 								CellClick(2, 1);
 							}}
@@ -177,7 +192,8 @@ const TicTacToe = () => {
 							{board[2][1]}
 						</button>
 						<button
-							className="border border-black font-black text-[3vw] h-[10vw] w-[10vw]"
+							id="bottom-right-tic-tac-toe-button"
+							className="bg-blue-500 text-white text-[3vw] font-black border-b-4 border-blue-700 rounded h-[10vw] w-[10vw] m-2"
 							onClick={() => {
 								CellClick(2, 2);
 							}}
