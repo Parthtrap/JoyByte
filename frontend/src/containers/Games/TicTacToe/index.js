@@ -12,36 +12,36 @@ const TicTacToe = () => {
 	const checkWin = () => {
 		for (let i = 0; i < 3; i++) {
 			if (
-				board[i][0] == board[i][1] &&
-				board[i][1] == board[i][2] &&
-				board[i][0] != "" &&
-				board[i][1] != "" &&
-				board[i][2] != ""
+				board[i][0] === board[i][1] &&
+				board[i][1] === board[i][2] &&
+				board[i][0] !== "" &&
+				board[i][1] !== "" &&
+				board[i][2] !== ""
 			)
 				return true;
 			if (
-				board[0][i] == board[1][i] &&
-				board[1][i] == board[2][i] &&
-				board[0][i] != "" &&
-				board[1][i] != "" &&
-				board[2][i] != ""
+				board[0][i] === board[1][i] &&
+				board[1][i] === board[2][i] &&
+				board[0][i] !== "" &&
+				board[1][i] !== "" &&
+				board[2][i] !== ""
 			)
 				return true;
 		}
 		if (
-			board[0][0] == board[1][1] &&
-			board[1][1] == board[2][2] &&
-			board[0][0] != "" &&
-			board[1][1] != "" &&
-			board[2][2] != ""
+			board[0][0] === board[1][1] &&
+			board[1][1] === board[2][2] &&
+			board[0][0] !== "" &&
+			board[1][1] !== "" &&
+			board[2][2] !== ""
 		)
 			return true;
 		if (
-			board[0][2] == board[1][1] &&
-			board[1][1] == board[2][0] &&
-			board[2][0] != "" &&
-			board[1][1] != "" &&
-			board[0][2] != ""
+			board[0][2] === board[1][1] &&
+			board[1][1] === board[2][0] &&
+			board[2][0] !== "" &&
+			board[1][1] !== "" &&
+			board[0][2] !== ""
 		)
 			return true;
 		return false;
@@ -60,22 +60,22 @@ const TicTacToe = () => {
 	const checkFull = () => {
 		for (let i = 0; i < 3; i++)
 			for (let j = 0; j < 3; j++)
-				if (board[i][j] != "X" && board[i][j] != "O") return false;
+				if (board[i][j] !== "X" && board[i][j] !== "O") return false;
 		return true;
 	};
 
 	const CellClick = (i, j) => {
-		if (board[i][j] == "X" || board[i][j] == "O") return;
+		if (board[i][j] === "X" || board[i][j] === "O") return;
 		let newBoard = [...board];
 		newBoard[i][j] = player;
 		setBoard(newBoard);
-		if (checkFull()) {
+		if (checkWin()) {
+			setGameEnded(true);
+		} else if (checkFull()) {
 			setPlayer("Noone");
 			setGameEnded(true);
-		} else if (checkWin()) {
-			setGameEnded(true);
 		} else {
-			if (player == "X") setPlayer("O");
+			if (player === "X") setPlayer("O");
 			else setPlayer("X");
 		}
 	};
