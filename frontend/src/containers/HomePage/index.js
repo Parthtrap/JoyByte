@@ -23,6 +23,7 @@ const HomePage = () => {
 			</div>
 			<div className="flex flex-wrap">
 				<GameCard title="Tic-Tac-Toe" url="/game/tictactoe" />
+				<GameCard title="Sudoku" url="/game/sudoku" />
 				<GameCard title="Sudoku Solver" url="/utils/sudokusolver" />
 			</div>
 		</div>
