@@ -25,6 +25,17 @@ const Sudoku = () => {
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 	]);
+	const [checkSudoku, setCheckSudoku] = useState([
+		[false, false, false, false, false, false, false, false, false],
+		[false, false, false, false, false, false, false, false, false],
+		[false, false, false, false, false, false, false, false, false],
+		[false, false, false, false, false, false, false, false, false],
+		[false, false, false, false, false, false, false, false, false],
+		[false, false, false, false, false, false, false, false, false],
+		[false, false, false, false, false, false, false, false, false],
+		[false, false, false, false, false, false, false, false, false],
+		[false, false, false, false, false, false, false, false, false],
+	]);
 	const [selectedKey, setSelectedKey] = useState(0);
 	const keys = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -35,41 +46,76 @@ const Sudoku = () => {
 	useEffect(() => {
 		if (isSolving) {
 			setTimeout(() => setTimer(timer + 1), 1000);
-			console.log("Hello");
-		} else {
-			console.log("Nope");
+			if (checkSudokuFunction()) {
+				setIsSolving(false);
+				console.log(`WIN in ${timer + 1} Seconds`);
+			}
 		}
 	}, [timer]);
 
 	const newSudoku = async () => {
-		setIsSolving(false);
-		setTimer(-1);
 		const response = await fetch(
 			"https://sudoku-api.vercel.app/api/dosuku"
 		);
 		const data = await response.json();
 		const newSudoku = data["newboard"]["grids"][0]["value"];
+		const newSudoku2 = JSON.parse(JSON.stringify(newSudoku));
 		setSudoku(newSudoku);
-		setInitialSudoku(newSudoku);
+		setInitialSudoku(newSudoku2);
 		setTimer(0);
 		setIsSolving(true);
 	};
 
 	const onCellClick = (i, j) => {
 		if (initialSudoku[i][j] != 0) return;
-		let tempSudoku = sudoku;
-		tempSudoku[i][j] = selectedKey;
-		setSudoku(tempSudoku);
+		sudoku[i][j] = selectedKey;
+	};
+
+	const checkSudokuFunction = (number) => {
+		let flag = true;
+		for (let i = 0; i < 9; i++) {
+			for (let j = 0; j < 9; j++) {
+				checkSudoku[i][j] = false;
+				if (sudoku[i][j] == 0) {
+					flag = false;
+					continue;
+				}
+				let number = sudoku[i][j];
+				sudoku[i][j] = -1;
+				for (let k = 0; k < 9; k++) {
+					if (sudoku[i][k] == number || sudoku[k][j] == number) {
+						checkSudoku[i][j] = true;
+					}
+				}
+				let x = i - (i % 3);
+				let y = j - (j % 3);
+				for (let X = 0; X < 3; X++) {
+					for (let Y = 0; Y < 3; Y++) {
+						if (sudoku[x + X][y + Y] == number)
+							checkSudoku[i][j] = true;
+					}
+				}
+				sudoku[i][j] = number;
+			}
+		}
+		return flag;
 	};
 
 	return (
 		<div>
 			<div className="text-center font-black text-6xl">Sudoku</div>
-			<div className="flex justify-center">
-				<button onClick={newSudoku}>Generate new Sudoku</button>
+			<div className="flex justify-center my-6">
+				<button
+					className="border-black border-2 rounded-full p-1 px-3 hover:bg-red-500 hover:scale-125"
+					onClick={() => window.location.reload(false)}
+				>
+					Generate new Sudoku
+				</button>
 			</div>
-			<div className="flex justify-center">Timer : {timer} seconds</div>
-			<div className="flex justify-center">
+			<div className="flex justify-center mb-5">
+				Timer : {timer} seconds
+			</div>
+			<div className="flex justify-center mb-5">
 				<div className="grid grid-cols-9 w-[30vw] h-[30vw] min-w-[300px] min-h-[300px]">
 					{sudoku.map((row, rowNumber) => {
 						return row.map((cellElement, cellElementNumber) => {
@@ -92,6 +138,14 @@ const Sudoku = () => {
 											cellElementNumber
 										] != 0
 											? "bg-teal-500 "
+											: checkSudoku[rowNumber][
+													cellElementNumber
+											  ]
+											? "bg-red-400 "
+											: sudoku[rowNumber][
+													cellElementNumber
+											  ] != 0
+											? "bg-gray-300 "
 											: " ") +
 										"flex items-center justify-center border-black"
 									}
@@ -109,7 +163,7 @@ const Sudoku = () => {
 					})}
 				</div>
 			</div>
-			<div className="flex justify-center">
+			<div className="flex justify-center mb-5">
 				{keys.map((keyNumber, keyIndex) => {
 					return (
 						<div
@@ -128,7 +182,15 @@ const Sudoku = () => {
 					);
 				})}
 			</div>
-			<div>Solved</div>
+			<div
+				className={
+					isSolving
+						? "hidden"
+						: "text-center font-black text-3xl text-green-500"
+				}
+			>
+				Solved in {timer + 1} Seconds
+			</div>
 		</div>
 	);
 };
