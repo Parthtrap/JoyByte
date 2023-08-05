@@ -116,11 +116,12 @@ const Sudoku = () => {
 				Timer : {timer} seconds
 			</div>
 			<div className="flex justify-center mb-5">
-				<div className="grid grid-cols-9 w-[30vw] h-[30vw] min-w-[300px] min-h-[300px]">
+				<div className="grid grid-cols-9 w-[20vw] h-[20vw] min-w-[300px] min-h-[300px]">
 					{sudoku.map((row, rowNumber) => {
 						return row.map((cellElement, cellElementNumber) => {
 							return (
 								<div
+									id={`cell-${rowNumber}-${cellElementNumber}`}
 									className={
 										(cellElementNumber % 3 == 2
 											? "border-r-2 "
@@ -169,7 +170,7 @@ const Sudoku = () => {
 						<div
 							className={
 								"border-2 border-black rounded-full " +
-								"w-[4vw] h-[4vw] min-w-[30px] min-h-[30px] " +
+								"w-[3vw] h-[3vw] min-w-[30px] min-h-[30px] " +
 								"flex items-center justify-center m-1 " +
 								(selectedKey == keyIndex ? "bg-teal-400 " : " ")
 							}
